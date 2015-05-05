@@ -18,7 +18,7 @@ class PlaysController < ApplicationController
   end
 
   def destroy
-    Play.find_by(id: params[:id]).destroy
+    Play.find_by(params[:id]).destroy
     redirect_to plays_path
   end
 
