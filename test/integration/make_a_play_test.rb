@@ -64,11 +64,11 @@ class MakeAPlayTest < ActionDispatch::IntegrationTest
     click_link_or_button 'Play!'
     assert page.has_content?("ball")
 
-    within('#plays li:first') do
+    #within('#plays li:first') do
       click_link_or_button 'Delete'
 
       assert_equal '/plays', current_path
       refute page.has_content?('ball')
     end
-  end
+  #end
 end

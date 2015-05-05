@@ -1,6 +1,7 @@
 class Play < ActiveRecord::Base
-  validates :word, presence: true
-  validates :word, format: {:with =>  /\A[a-zA-Z]+\z/}
+  validates :word, presence: true,
+                   length: { maximum:  7},
+                   format: {:with =>  /\A[a-zA-Z]+\z/}
 
   def letter_scores
     {"A"=>1, "B"=>3, "C"=>3, "D"=>2, "E"=>1, "F"=>4, "G"=>2, "H"=>4, "I"=>1, "J"=>8,
@@ -8,7 +9,13 @@ class Play < ActiveRecord::Base
      "U"=>1, "V"=>4, "W"=>4, "X"=>8, "Y"=>4, "Z"=>10}
   end
 
-  def score
-    word.upcase.chars.inject(0){|sum, letter| sum + letter_scores[letter]}
+  def score(multiplier=nil)
+    multiplier ||= {word_multiplier: :single}
+    m = multiplier[:word_multiplier]
+    word.upcase.chars.inject(0){|sum, letter| sum + letter_scores[letter]} * word_multiplier[m]
+  end
+
+  def word_multiplier
+    {double: 2, triple: 3, single: 1}
   end
 end

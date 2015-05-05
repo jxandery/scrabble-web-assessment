@@ -6,7 +6,7 @@
   <h3>Previous Words</h3>
   <ul id="plays">
 <% @plays.map do |play| %>
-  <li><%= play.word.downcase %> <%= play.score %> <%= link_to "Delete", action: :destroy, method: :delete %></li>
+  <li><%= play.word.downcase %> <%= play.score %> <%= link_to "Delete", play_path(play.id), method: :delete %></li>
 <% end %>
   </ul>
 </div>
