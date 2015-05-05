@@ -1,6 +1,6 @@
 class PlaysController < ApplicationController
   def index
-    @plays = Play.all
+    @plays = Play.last(3)
   end
 
   def new
