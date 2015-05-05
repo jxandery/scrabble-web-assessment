@@ -1,0 +1,12 @@
+<h1>Scrabble-Web</h1>
+
+<%= link_to "Play New Word", new_play_path %>
+
+<div id="previous_words">
+  <h3>Previous Words</h3>
+  <ul id="plays">
+<% @plays.map do |play| %>
+  <li><%= play.word.downcase %> <%= play.score %> <%= link_to "Delete", action: :destroy, method: :delete %></li>
+<% end %>
+  </ul>
+</div>
