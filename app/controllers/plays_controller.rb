@@ -19,7 +19,6 @@ class PlaysController < ApplicationController
 
   def destroy
     Play.find_by(params[:id]).destroy
-    require "pry"; binding.pry
     redirect_to plays_path
   end
 
